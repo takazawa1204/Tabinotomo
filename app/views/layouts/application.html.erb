@@ -4,12 +4,30 @@
     <title>Tabinotomo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class='bg-header'>
+      <nav class='navbar navbar-expand-md' style='height: 140px'>
+        <div class='container'>
+          <div>
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li><%= link_to 'マイページ', users_my_page_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'nav-link text-body font-weight-bold' %></li>
+              <% else %>
+                <li><%= link_to '新規登録', new_user_registration_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
+                <li><%= link_to 'ログイン', new_user_session_path, class:'nav-link text-body font-weight-bold' %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
