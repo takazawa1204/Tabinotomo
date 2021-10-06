@@ -12,13 +12,17 @@
     <header class='bg-header'>
       <nav class='navbar navbar-expand-md' style='height: 140px'>
         <div class='container'>
+          <h1>Tabinotomo</h1>
           <div>
             <ul class="navbar-nav ml-auto">
+              
               <% if user_signed_in? %>
+                <li><%= link_to '新規しおりの作成', new_user_registration_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
                 <li><%= link_to 'マイページ', users_my_page_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'nav-link text-body font-weight-bold' %></li>
               <% else %>
-                <li><%= link_to '新規登録', new_user_registration_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
+                <li><%= link_to '新規しおりの作成', new_user_registration_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
+                <li><%= link_to '新規会員登録', new_user_registration_path, class:'nav-link text-body font-weight-bold mr-1' %></li>
                 <li><%= link_to 'ログイン', new_user_session_path, class:'nav-link text-body font-weight-bold' %></li>
               <% end %>
             </ul>

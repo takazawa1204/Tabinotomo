@@ -1,0 +1,6 @@
+<h1>Mypage</h1>
+<div>
+  <p>ニックネーム:<%= @user.name %></p>
+  <p>メールアドレス:<%= @user.email %></p>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+</div>
