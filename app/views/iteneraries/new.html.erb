@@ -23,9 +23,9 @@
               <%= render "schedule_fields", f: schedules %>
             <% end %>
           </div>
-          
-          
-          
+          <div>
+            <%= link_to_add_association '追加', f, :schedules %>
+          </div>
           <h4 class='pt-3'>編集用パスワード</h4>
           <%= f.password_field :edit_password %>
           <%= f.submit 'しおりの登録' %>

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_013414) do
   create_table "schedules", force: :cascade do |t|
     t.integer "itenerary_id"
     t.date "schedules_date"
-    t.time "schedule_time"
+    t.time "schedules_time"
     t.string "schedules_title"
     t.text "schedules_comment"
     t.datetime "created_at", null: false
