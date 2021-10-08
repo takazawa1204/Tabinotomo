@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_122830) do
+ActiveRecord::Schema.define(version: 2021_10_08_013414) do
+
+  create_table "belongings", force: :cascade do |t|
+    t.string "belongings_name"
+    t.integer "itenerary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "iteneraries", force: :cascade do |t|
+    t.string "edit_password"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "itenerary_id"
+    t.date "schedules_date"
+    t.time "schedule_time"
+    t.string "schedules_title"
+    t.text "schedules_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

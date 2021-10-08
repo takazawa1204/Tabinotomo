@@ -1,0 +1,36 @@
+<div class='top-bg-center'>
+  <div class="container pb-5">
+    <div class='top-bg-introduction mx-auto py-5'>
+      <div class='col-9 mx-auto px-3 py-4'>
+        <h3 class='pt-3'>
+          しおり作成ページ
+        </h3>
+        <%= form_with model: @itenerary, local:true do |f| %>
+          <h4 class='pt-3'>しおりタイトル</h4>
+          <%= f.text_field :title %>
+          <h4 class='pt-3'>持ち物リスト</h4>
+          <div>
+            <%= f.fields_for :belongings do |belongings| %>
+              <%= render "belonging_fields", f: belongings %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to_add_association '追加', f, :belongings %>
+          </div>
+          <h4 class='pt-3'>スケジュール</h4>
+          <div>
+            <%= f.fields_for :schedules do |schedules| %>
+              <%= render "schedule_fields", f: schedules %>
+            <% end %>
+          </div>
+          
+          
+          
+          <h4 class='pt-3'>編集用パスワード</h4>
+          <%= f.password_field :edit_password %>
+          <%= f.submit 'しおりの登録' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

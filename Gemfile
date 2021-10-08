@@ -67,3 +67,4 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem "cocoon"
