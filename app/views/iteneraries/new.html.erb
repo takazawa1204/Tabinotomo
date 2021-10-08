@@ -26,6 +26,15 @@
           <div>
             <%= link_to_add_association '追加', f, :schedules %>
           </div>
+          <h4 class='pt-3'>アルバム</h4>
+           <div>
+            <%= f.fields_for :albums do |albums| %>
+              <%= render "album_fields", f: albums %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to_add_association '追加', f, :albums %>
+          </div>
           <h4 class='pt-3'>編集用パスワード</h4>
           <%= f.password_field :edit_password %>
           <%= f.submit 'しおりの登録' %>

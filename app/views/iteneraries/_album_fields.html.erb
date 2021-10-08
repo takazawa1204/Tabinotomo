@@ -1,0 +1,10 @@
+<div class="nested-fields">
+  <%= f.label "写真" %><br>
+  <%= f.attachment_field :image %><br>
+  <%= f.label "場所" %><br>
+  <%= f.label "タグ" %><br>
+  <%= f.text_field :tag_name, value: @tag_list %><br>
+  <%= f.label "コメント" %><br>
+  <%= f.text_area :albums_comment %><br>
+  <%= link_to_remove_association "削除", f %>
+</div>

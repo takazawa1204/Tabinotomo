@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :iteneraries, only: [:new, :create, :index, :show, :edit, :update] do
     resources :belongings, only: [:create, :destroy]
     resources :schedules, only: [:create, :destroy, :index, :edit, :update]
+    resources :albums, only: [:create, :destroy, :index, :edit, :update]
   end
   
 end

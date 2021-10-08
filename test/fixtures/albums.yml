@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  itenerary_id: 1
+  image_id: 1
+  albums_comment: MyText
+  albums_map: MyString
+
+two:
+  itenerary_id: 1
+  image_id: 1
+  albums_comment: MyText
+  albums_map: MyString

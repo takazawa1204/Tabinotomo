@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_013414) do
+ActiveRecord::Schema.define(version: 2021_10_08_061826) do
+
+  create_table "albums", force: :cascade do |t|
+    t.integer "itenerary_id"
+    t.integer "image_id"
+    t.text "albums_comment"
+    t.string "albums_map"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "belongings", force: :cascade do |t|
     t.string "belongings_name"
@@ -34,6 +43,20 @@ ActiveRecord::Schema.define(version: 2021_10_08_013414) do
     t.text "schedules_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tagmaps", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
