@@ -6,8 +6,11 @@ class Itenerary < ApplicationRecord
   accepts_nested_attributes_for :schedules, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :albums, reject_if: :all_blank, allow_destroy: true
   
-  def save_albums(tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+  has_many :tagmaps, dependent: :destroy
+  has_many :tags, through: :tagmaps
+  
+  def save_iteneraries(tags)
+    current_tags = self.tags.pluck(:tagname) unless self.tags.nil?
     old_tags = current_tags - tags
     new_tags = tags - current_tags
     
@@ -16,8 +19,8 @@ class Itenerary < ApplicationRecord
     end
     
     new_tags.each do |new_name|
-      album_tag = Tag.find_or_create_by(tag_name:new_name)
-      self.tags << album_tag
+      itenerary_tag = Tag.find_or_create_by(tag_name:new_name)
+      self.tags << itenerary_tag
     end
   end
 end

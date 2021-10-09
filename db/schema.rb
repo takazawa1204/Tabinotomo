@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_061826) do
 
   create_table "tagmaps", force: :cascade do |t|
     t.integer "tag_id"
-    t.integer "album_id"
+    t.integer "itenerary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

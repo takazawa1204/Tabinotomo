@@ -1,0 +1,29 @@
+<div class='top-bg-center'>
+  <div class="container pb-5">
+    <div class='top-bg-introduction mx-auto py-5'>
+      <div class='col-9 mx-auto px-3 py-4'>
+        <h3 class='pt-3'>
+          しおり
+        </h3>
+          <h4 class='pt-3'><%= @itenerary.title %></h4>
+          <h4 class='pt-3'>持ち物リスト</h4>
+          <div>
+            <%= @belonging.belongings_name %>
+          </div>
+          <h4 class='pt-3'>スケジュール</h4>
+          <div>
+            <%= @schedule.schedules_date %>
+          </div>
+          <h4 class='pt-3'>アルバム</h4>
+          <div>
+            <%= @album.albums_comment %>
+          </div>
+          <h4>タグ</h4>
+          <div>
+          </div>
+          <h4 class='pt-3'>編集用パスワード</h4>
+          <%= @itenerary.edit_password %>
+      </div>
+    </div>
+  </div>
+</div>

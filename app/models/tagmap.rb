@@ -1,4 +1,4 @@
 class Tagmap < ApplicationRecord
-  belongs_to :album
+  belongs_to :itenerary
   belongs_to :tag
 end

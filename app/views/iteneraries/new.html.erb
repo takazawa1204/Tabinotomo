@@ -35,6 +35,10 @@
           <div>
             <%= link_to_add_association '追加', f, :albums %>
           </div>
+          <div>
+            <h4>タグ</h4>
+            <%= f.text_field :tag_name, value: @tag_list %><br>
+          </div>
           <h4 class='pt-3'>編集用パスワード</h4>
           <%= f.password_field :edit_password %>
           <%= f.submit 'しおりの登録' %>

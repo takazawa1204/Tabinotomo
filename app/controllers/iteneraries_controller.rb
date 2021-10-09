@@ -4,16 +4,15 @@ class ItenerariesController < ApplicationController
     @belonging = @itenerary.belongings.build
     @schedule = @itenerary.schedules.build
     @album = @itenerary.albums.build
-
   end
 
   def create
     @itenerary = Itenerary.new(itenerary_params)
     @itenerary.save
-    redirect_to iteneraries_path
-    tag_list = params[:tag_name].split(",")
+    redirect_to itenerary_path(@itenerary)
+    tag_list = params[:itenerary][:tag_name].split(",")
     if @itenerary.save
-      @itenerary.save_albums(tag_list)
+      @itenerary.save_iteneraries(tag_list)
     end
   end
 
@@ -23,6 +22,9 @@ class ItenerariesController < ApplicationController
 
   def show
     @itenerary = Itenerary.find(params[:id])
+    @belonging = @itenerary.belongings.find(params[:id])
+    @schedule = @itenerary.schedules.find(params[:id])
+    @album = @itenerary.albums.find(params[:id])
   end
 
   def edit
