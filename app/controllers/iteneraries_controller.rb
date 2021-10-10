@@ -22,9 +22,9 @@ class ItenerariesController < ApplicationController
 
   def show
     @itenerary = Itenerary.find(params[:id])
-    @belonging = @itenerary.belongings.find(params[:id])
-    @schedule = @itenerary.schedules.find(params[:id])
-    @album = @itenerary.albums.find(params[:id])
+    @belongings = Belonging.where(itenerary_id: params[:id])
+    @schedules = Schedule.where(itenerary_id: params[:id]).order(:schedules_date).order(:schedules_time)
+    @albums = Album.where(itenerary_id: params[:id])
   end
 
   def edit
