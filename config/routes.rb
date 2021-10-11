@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'homes#top'
   get '/users/my_page' => 'users#show'
+  get '/search', to: 'searchs#search'
   
   resources :users, only: [:show, :edit, :update]
   resources :iteneraries, only: [:new, :create, :index, :show, :edit, :update] do

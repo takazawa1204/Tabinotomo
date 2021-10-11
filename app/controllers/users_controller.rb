@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
+    favorites = Favorite.where(user_id: current_user.id).pluck(:itenerary_id)  # ログイン中のユーザーのお気に入りのitenerary_idカラムを取得
+    @favorite_list = Itenerary.find(favorites) 
   end
   
   def edit

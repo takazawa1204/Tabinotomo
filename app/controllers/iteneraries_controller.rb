@@ -17,7 +17,8 @@ class ItenerariesController < ApplicationController
   end
 
   def index
-    @iteneraries = Itenerary.all
+    @tag_list = Tag.all
+    @iteneraries = params[:tag_id].present? ? Tag.find(params[:tag_id]).iteneraries : Itenerary.all
     @albums = Album.all
   end
 
@@ -45,7 +46,7 @@ class ItenerariesController < ApplicationController
     else
       redirect_to edit_itenerary_path(@itenerary)
     end
-    
+
     tag_list = params[:itenerary][:tag_name].split(",")
     if @itenerary.update(itenerary_params)
       @itenerary.save_iteneraries(tag_list)
@@ -57,7 +58,7 @@ class ItenerariesController < ApplicationController
   def itenerary_params
     params.require(:itenerary).permit(:title, :edit_password, :confirmation_password, belongings_attributes: [:id, :belongings_name, :_destroy], schedules_attributes: [:id, :schedules_date, :schedules_time, :schedules_title, :schedules_comment, :_destroy], albums_attributes: [:id, :image, :albums_comment, :albums_map, :_destroy])
   end
-  
+
   def password_params
     params.require(:itenerary).permit(:confirmation_password)
   end
