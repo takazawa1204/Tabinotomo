@@ -18,6 +18,7 @@ class ItenerariesController < ApplicationController
 
   def index
     @iteneraries = Itenerary.all
+    @albums = Album.all
   end
 
   def show
@@ -28,14 +29,36 @@ class ItenerariesController < ApplicationController
   end
 
   def edit
+    @itenerary = Itenerary.find(params[:id])
+    @belonging = @itenerary.belongings
+    @schedule = @itenerary.schedules
+    @album = @itenerary.albums
+    @tag_list = @itenerary.tags.pluck(:tag_name).join(",")
   end
 
   def update
+    @itenerary = Itenerary.find(params[:id])
+    @itenerary.update(password_params)
+    if @itenerary.edit_password == @itenerary.confirmation_password
+      @itenerary.update(itenerary_params)
+      redirect_to itenerary_path(@itenerary)
+    else
+      redirect_to edit_itenerary_path(@itenerary)
+    end
+    
+    tag_list = params[:itenerary][:tag_name].split(",")
+    if @itenerary.update(itenerary_params)
+      @itenerary.save_iteneraries(tag_list)
+    end
   end
 
   private
 
   def itenerary_params
-    params.require(:itenerary).permit(:title, :edit_password, belongings_attributes: [:id, :belongings_name, :_destroy], schedules_attributes: [:id, :schedules_date, :schedules_time, :schedules_title, :schedules_comment, :_destroy], albums_attributes: [:id, :image, :albums_comment, :albums_map, :_destroy])
+    params.require(:itenerary).permit(:title, :edit_password, :confirmation_password, belongings_attributes: [:id, :belongings_name, :_destroy], schedules_attributes: [:id, :schedules_date, :schedules_time, :schedules_title, :schedules_comment, :_destroy], albums_attributes: [:id, :image, :albums_comment, :albums_map, :_destroy])
+  end
+  
+  def password_params
+    params.require(:itenerary).permit(:confirmation_password)
   end
 end

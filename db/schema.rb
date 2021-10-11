@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_061826) do
   create_table "iteneraries", force: :cascade do |t|
     t.string "edit_password"
     t.string "title"
+    t.string "confirmation_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

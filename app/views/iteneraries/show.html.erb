@@ -30,10 +30,11 @@
             </div>
           <% end %>
           <h4>タグ</h4>
+          <h4>password</h4>
           <div>
+            <%= @itenerary.edit_password %>
           </div>
-          <h4 class='pt-3'>編集用パスワード</h4>
-          <%= @itenerary.edit_password %>
+          <%= link_to 'しおりの編集', edit_itenerary_path(@itenerary), class:"btn btn-success" %>
       </div>
     </div>
   </div>

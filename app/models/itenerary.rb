@@ -10,7 +10,7 @@ class Itenerary < ApplicationRecord
   has_many :tags, through: :tagmaps
   
   def save_iteneraries(tags)
-    current_tags = self.tags.pluck(:tagname) unless self.tags.nil?
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - tags
     new_tags = tags - current_tags
     

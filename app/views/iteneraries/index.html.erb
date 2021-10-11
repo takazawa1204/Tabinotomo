@@ -1,7 +1,21 @@
-<div>
-  <%= @iteneraries.each do |itenerary| %>
-    <div>
-      <p>title:<%= itenerary.title %></p>
+<div class='top-bg-center'>
+  <div class="container pb-5">
+    <div class='top-bg-introduction mx-auto py-5'>
+      <div class='col-9 mx-auto px-3 py-4'>
+        <h3 class='pt-3'>
+          しおり一覧
+        </h3>
+        <h4>しおりタイトル</h4>
+        <% @iteneraries.each do |itenerary| %>
+          <h4 class='pt-3'><%= itenerary.title %></h4>
+        <% end %>
+        <h4 class='pt-3'>おすすめのしおり</h4>
+        <% @albums.first(3).each do |album| %>
+          <div>
+            <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", class:"round" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
