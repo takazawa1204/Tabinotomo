@@ -8,11 +8,24 @@
         <h4>しおりタイトル</h4>
         <% @iteneraries.each do |itenerary| %>
           <h4 class='pt-3'><%= itenerary.title %></h4>
+          <% if itenerary.favorited_by?(current_user) %>
+            <p>
+              <%= link_to itenerary_favorites_path(itenerary), method: :delete do %>
+                ♥<%= itenerary.favorites.count %>いいね
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to itenerary_favorites_path(itenerary), method: :post do %>
+                ♡<%= itenerary.favorites.count %>いいね
+              <% end %>
+            </p>
+          <% end %>
         <% end %>
         <h4 class='pt-3'>おすすめのしおり</h4>
         <% @albums.first(3).each do |album| %>
           <div>
-            <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", class:"round" %>
+            <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", clss:"round" %>
           </div>
         <% end %>
       </div>

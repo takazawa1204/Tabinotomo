@@ -9,6 +9,12 @@ class Itenerary < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
   
+  has_many :favorites, dependent: :destroy
+  
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+  
   def save_iteneraries(tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - tags

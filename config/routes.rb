@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :belongings, only: [:create, :destroy]
     resources :schedules, only: [:create, :destroy, :index, :edit, :update]
     resources :albums, only: [:create, :destroy, :index, :edit, :update]
+    resource :favorites, only: [:create, :destroy]
   end
   
 end
