@@ -1,3 +1,65 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//topページのintroduction背景画像
+.top-bg-introduction {
+  background-image : image_url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color:rgba(216,150,98,0.2);
+  background-blend-mode:lighten;
+  opacity: 0.6;
+}
+
+//topページのスケジュール画像
+.schedule-image {
+  background-image : image_url('schedule.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+//topページの持ち物リスト画像
+.belonging-image {
+  background-image : image_url('belonging.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+// topページのアルバム画像
+.album-image {
+  background-image : image_url('album.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+// しおり作成ボタン色
+.btn-pink,
+.btn-pink.disabled, .btn-pink:disabled {
+  color: #fff;
+  background-color: #FFBEDA;
+  border-color: #ff7bff;
+}
+
+// focusされた時の枠線の色
+.btn-pink:focus, .btn-pink.focus,
+.btn-pink:not(:disabled):not(.disabled):active:focus, .btn-pink:not(:disabled):not(.disabled).active:focus,
+.show > .btn-pink.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(200, 123, 255, 0.5);
+}
+
+// hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定）
+.btn-pink:hover {
+  color: #fff;
+  background-color: #FFABCE;
+  border-color: #ff62cc;
+}
+
+// active時の色（hover時と同等かさらに濃いor暗めの色を指定）
+.btn-pink:not(:disabled):not(.disabled):active, .btn-pink:not(:disabled):not(.disabled).active,
+.show > .btn-pink.dropdown-toggle {
+  color: #fff;
+  background-color: #FF82B2;
+  border-color: #ee5cbf;
+}
+
