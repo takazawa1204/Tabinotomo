@@ -1,5 +1,4 @@
-<div class="nested-fields">
-  <%= f.label "持ち物" %>
+<div class="nested-fields pt-2">
   <%= f.text_field :belongings_name %>
-  <%= link_to_remove_association "削除", f %>
+  <%= link_to_remove_association "削除", f, class:"far fa-trash-alt" %>
 </div>

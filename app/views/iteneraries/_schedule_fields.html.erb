@@ -1,11 +1,23 @@
 <div class="nested-fields">
-  <%= f.label "日程" %><br>
-  <%= f.date_field :schedules_date %><br>
-  <%= f.label "時間" %><br>
-  <%= f.time_field :schedules_time %><br>
-  <%= f.label "タイトル" %><br>
-  <%= f.text_field :schedules_title %><br>
-  <%= f.label "コメント" %><br>
-  <%= f.text_area :schedules_comment %><br>
-  <%= link_to_remove_association "削除", f %>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>タイトル</td>
+        <td><%= f.text_field :schedules_title %></td>
+      </tr>
+      <tr>
+        <td>日程</td>
+        <td><%= f.date_field :schedules_date %></td>
+      </tr>
+      <tr>
+        <td>時間</td>
+        <td><%= f.time_field :schedules_time %></td>
+      </tr>
+      <tr>
+        <td>コメント</td>
+        <td><%= f.text_area :schedules_comment %></td>
+        <td><%= link_to_remove_association "削除", f %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

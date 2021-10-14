@@ -2,14 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//topページのintroduction背景画像
-.top-bg-introduction {
-  background-image : image_url('background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-color:rgba(216,150,98,0.2);
-  background-blend-mode:lighten;
-  opacity: 0.6;
+//topページ枠線
+.top-main {
+  padding: 2em 0;
+  border: double 5px #000;
+}
+//topページフォント
+.top-bg-title {
+  font-family: 'Kaushan Script', cursive;
+  color: yellow;
+}
+.top-title {
+  font-size: 100px;
 }
 
 //topページのスケジュール画像
@@ -62,4 +66,3 @@
   background-color: #FF82B2;
   border-color: #ee5cbf;
 }
-

@@ -1,52 +1,17 @@
-<div class='top-bg-center'>
-  <div class="container pb-5">
-    <div class='top-bg-introduction mx-auto'>
+<div class='top bg-info'>
+  <div class="container top-main pb-5">
+    <div class='top-bg-title mx-auto'>
       <div class='col-9 mx-auto px-3 py-4 text-center'>
-        <h1 class='pt-3'>たびのとも</h1>
-        <h4 class='pt-3'>
-          旅行のしおりを作成、共有するwebサービス<br>
-          あなたの旅の手助けをします
+        <h1 class='pt-5 top-title'>Tabinotomo</h1>
+        <h4 class='pt-3 top-sub-title'>
+          " Itenerary creation servise "<br>
+          Share Trip
         </h4>
       </div>
     </div>
-    <hr class='divider'>
-　　<div class='row featurette' >
-　　  <div class='col-md-7 mx-auto'>
-　　    <h2 class='featurette-hedding'>
-　　      持ち物リスト作成
-　　    </h2>
-　　    <p class='lead'>
-　　      必要なものをリストにして確認できます
-　　    </p>
-　　  </div>
-　　  <div class='col-md-3 belonging-image rounded-circle mx-auto'></div>
-　　</div>
-　　<hr class='divider'>
-　　<div class='row featurette' >
-　　  <div class='col-md-3 schedule-image rounded-circle mx-auto'></div>
-　　  <div class='col-md-7 mx-auto'>
-　　    <h2 class='featurette-hedding'>
-　　      スケジュール作成
-　　    </h2>
-　　    <p class="lead">
-　　      日程、時間、メモ等を確認できます
-　　    </p>
-      </div>
-    </div>
-　　<hr class='divider'>
-　　<div class='row featurette' >
-　　  <div class='col-md-7 mx-auto'>
-　　    <h2 class='featurette-hedding'>
-　　      アルバム作成
-　　    </h2>
-　　    <p class="lead">
-　　      思い出の写真を保存できます
-　　    </p>
-　　  </div>
-　　  <div class='col-md-3 album-image rounded-circle mx-auto'></div>
-　　</div>
+    <img class="header-logo d-block mx-auto mt-5 mb-5" src=<%= asset_path('top.png') %> width="540" height="360">
     <div class="text-center mt-5">
-      <%= link_to 'しおりの作成', new_itenerary_path, class:"btn-lg btn-pink" %>
+      <%= link_to 'しおりの作成', new_itenerary_path, class:"btn-lg btn btn-outline-dark" %>
     </div>
   </div>
 </div>

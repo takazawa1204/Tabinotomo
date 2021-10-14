@@ -25,7 +25,7 @@ class ItenerariesController < ApplicationController
   def show
     @itenerary = Itenerary.find(params[:id])
     @belongings = Belonging.where(itenerary_id: params[:id])
-    @schedules = Schedule.where(itenerary_id: params[:id]).order(:schedules_date).order(:schedules_time)
+    @schedules = Schedule.where(itenerary_id: params[:id]).order(:schedules_date).order(:schedules_time).group_by{|schedule| schedule.schedules_date}
     @albums = Album.where(itenerary_id: params[:id])
   end
 

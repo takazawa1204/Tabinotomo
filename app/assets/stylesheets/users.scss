@@ -1,3 +1,71 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mypage {
+  font-family: 'Kaushan Script', cursive;
+}
+
+.favorite-parent{
+  position: relative; /*基点の位置*/
+}
+
+.parent span.favorite-mask{
+  position: relative;
+  transition: .3s ease-in-out; /*移り変わる速さ*/
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.favorite-parent:hover span.favorite-mask::before{
+  content:"";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.favorite-parent span.favorite-text{
+  opacity: 0;
+  transition: .5s ease-in-out; /*移り変わる速さ*/
+  position: absolute;
+  z-index: 3;/*テキストを前面に出す*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #fff;
+  line-height: 1.5;
+}
+
+.favorite-parent:hover span.favorite-text{
+  opacity: 1;
+}
+
+.favorite-title{
+  font-family: cursive;
+}
+
+// kaminariのデザイン
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+  margin: 0 5px;
+  padding: 5px 10px;
+  background: #fff;
+  border-radius: 15px;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+}

@@ -7,7 +7,7 @@
         </h3>
         <h4>しおりタイトル</h4>
         <% @iteneraries.each do |itenerary| %>
-          <h4 class='pt-3'><%= itenerary.title %></h4>
+          <h4 class='pt-3'><%= link_to itenerary.title, itenerary_path(itenerary) %></h4>
           <% if itenerary.favorited_by?(current_user) %>
             <p>
               <%= link_to itenerary_favorites_path(itenerary), method: :delete do %>
