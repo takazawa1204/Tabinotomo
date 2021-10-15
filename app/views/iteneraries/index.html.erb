@@ -1,38 +1,63 @@
-<div class='top-bg-center'>
-  <div class="container pb-5">
-    <div class='top-bg-introduction mx-auto py-5'>
-      <div class='col-9 mx-auto px-3 py-4'>
-        <h3 class='pt-3'>
-          しおり一覧
-        </h3>
-        <h4>しおりタイトル</h4>
-        <% @iteneraries.each do |itenerary| %>
-          <h4 class='pt-3'><%= link_to itenerary.title, itenerary_path(itenerary) %></h4>
-          <% if itenerary.favorited_by?(current_user) %>
-            <p>
-              <%= link_to itenerary_favorites_path(itenerary), method: :delete do %>
-                ♥<%= itenerary.favorites.count %>いいね
+<div class="container itenerary pb-5">
+  <div class="row">
+    <div class="col-md-5">
+      <h1>Itenerary List</h1>
+    </div>
+  </div>
+  <hr class='divider'>
+  <div class="row">
+    <div class="col-8">
+      <h2 class="pt-5">List</h2>
+      <div class="row">
+        <table class="table table-borderless">
+        <% @iteneraries.each do |itenerary| %>  
+          <tbody>
+            <td><%= link_to itenerary.title, itenerary_path(itenerary) %></td>
+            <td>
+              <% if itenerary.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to itenerary_favorites_path(itenerary), method: :delete do %>
+                    ♥<%= itenerary.favorites.count %> favorite
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to itenerary_favorites_path(itenerary), method: :post do %>
+                    ♡<%= itenerary.favorites.count %> favorite
+                  <% end %>
+                </p>
               <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to itenerary_favorites_path(itenerary), method: :post do %>
-                ♡<%= itenerary.favorites.count %>いいね
-              <% end %>
-            </p>
-          <% end %>
+            </td>
+          </tbody>
         <% end %>
-        <h4 class='pt-3'>おすすめのしおり</h4>
-        <% @albums.first(3).each do |album| %>
+        </table>
+        <div class="d-flex justify-content-center py-2"><%= paginate @iteneraries %></div>
+      </div>
+      <h2 class="pt-5">Recommendation</h2>
+      <div class="row">
+        <div class="col-md-5">
           <div>
-            <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", clss:"round" %>
+            <% @albums.first(3).each do |album| %>
+              <div>
+                <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", clss:"round" %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-        <%= render 'searchs/form' %>
-        <p>タグリスト</p>
-        <% @tag_list.each do |list| %>
-           <p><%=link_to list.tag_name,iteneraries_path(tag_id:list.id)%><%= list.iteneraries.count %></p>
-        <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 pt-5">
+      <div class="container">
+        <div class="pt-5">
+          <h2>search</h2>
+          <%= render 'searchs/form' %>
+        </div>
+        <div class="pt-5">
+          <h2>Tag List</h2>
+          <% @tag_list.each do |list| %>
+             <p><%=link_to list.tag_name,iteneraries_path(tag_id:list.id)%><%= list.iteneraries.count %></p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

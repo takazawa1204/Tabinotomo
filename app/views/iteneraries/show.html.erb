@@ -1,73 +1,50 @@
-<div class='top-bg-center'>
-  <div class="container pb-5">
-    <div class='top-bg-introduction mx-auto'>
-      <div class='mx-auto px-3 py-4'>
-        <div class="float-right">
-          <p>
-              <img class="itenerary-title-top pull-right" src=<%= asset_path('titleframe2.jpg') %> width="120" height="120">
-          <p>
+<div class="container itenerary pb-5">
+  <div class="row">
+    <div class="pt-5 mx-auto">
+      <h1 class="itenerary-title"><%= @itenerary.title %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <h2 class="pt-5">Schedule</h2>
+      <% @schedules.each do |date,schedules| %>
+        <div class=" oneday mt-4 mb-4">
+          <div class="mr-auto"><%= date %></div>
         </div>
-        <div class="pt-3 p-md-5 mb-4 offset-md-5 mx-auto itenerary-title">
-          <%= @itenerary.title %>
-        </div>
-        <h4 class='pt-3'>スケジュール</h4>
-        <div class="row">
-          <div class="col-md-9">
-          <% @schedules.each do |date,schedules| %>
-            <div class="container">
-              <div class="row oneday mt-4 mb-4">
-                <div class="col-auto mr-auto"><%= date %></div>
-              </div>
-            </div>
-            <% schedules.each do |schedule| %>
-            <div class="container main-schedule">
-              <div class="row">
-                <div class="col-1">
-                  <div class="row h-50">
-                    <div class="col-1"></div>
-                  </div>
-                  <i class="fas fa-suitcase-rolling"></i>
-                  <div class="row h-50">
-                    <div class="col-1 scard-line"></div>
-                  </div>
-                </div>
-                <div class="col scard">
-                  <span></span>
-                  <div class="schedule-title">
-                    <i class="far fa-clock"></i>
-                    <%= schedule.schedules_time.strftime("%H:%M") %>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <%= schedule.schedules_title %>
-                  </div>
-                  <div class="schedule-comment">
-                    <%= schedule.schedules_comment %>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <% end %>
-          <% end %>
+        <% schedules.each do |schedule| %>
+          <div class="schedule-card">
+            <i class="far fa-clock"></i>
+            <%= schedule.schedules_time.strftime("%H:%M") %><br>
+            <i class="fas fa-map-marker-alt"></i>
+            <%= schedule.schedules_title %><br>
+            <%= schedule.schedules_comment %>
           </div>
-          <div class="col-md-2">
-            <ol class="sample1">
-              持ち物リスト
-              <% @belongings.each do |belonging| %>
-                <li><%= belonging.belongings_name %></li>
-              <% end %>
-            </ol>
-          </div>
-        </div>
-          <h4 class='pt-3'>アルバム</h4>
-          <% @albums.each do |album| %>
-            <div>
-              <%= album.albums_comment %>
-              <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", class:"round" %>
-            </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-3 mx-auto">
+      <div class="container">
+        <div class="pt-5">
+          <h2>Packing List</h2>
+          <% @belongings.each do |belonging| %>
+            <li><%= belonging.belongings_name %></li>
           <% end %>
-          <h4>共有用URL</h4>
-          <%= request.url %>
-          <%= link_to 'しおりの編集', edit_itenerary_path(@itenerary), class:"btn btn-success mx-auto d-block" %>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2 class="pt-5">Album</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2 class="pt-5">URL</h2>
+      <%= request.url %>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to 'edit', edit_itenerary_path(@itenerary), class:"btn-lg btn-outline-dark mx-auto my-5 container-fluid" %>
   </div>
 </div>

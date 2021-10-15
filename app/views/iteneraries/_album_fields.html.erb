@@ -1,19 +1,24 @@
-<div class="nested-fields">
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>写真</td>
-        <td><%= f.attachment_field :image %></td>
-      </tr>
-      <tr>
-        <td>場所</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>コメント</td>
-        <td><%= f.text_area :albums_comment %><br></td>
-        <td><%= link_to_remove_association "削除", f %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="nested-fields schedule-card">
+  <p>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>Photo</td>
+          <td><%= f.attachment_field :image, class: "form" %></td>
+        </tr>
+        <tr>
+          <td>Map</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Comment</td>
+          <td><%= f.text_area :albums_comment %><br></td>
+        </tr>
+        <tr class="text-right">
+          <td></td>
+          <td><%= link_to_remove_association "", f, class: "far fa-trash-alt fa-lg"%></td>
+        </tr>
+      </tbody>
+    </table>
+  </p>
 </div>

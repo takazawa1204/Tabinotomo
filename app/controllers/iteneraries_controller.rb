@@ -18,7 +18,8 @@ class ItenerariesController < ApplicationController
 
   def index
     @tag_list = Tag.all
-    @iteneraries = params[:tag_id].present? ? Tag.find(params[:tag_id]).iteneraries : Itenerary.all
+    iteneraries = params[:tag_id].present? ? Tag.find(params[:tag_id]).iteneraries : Itenerary.all
+    @iteneraries =  Kaminari.paginate_array(iteneraries).page(params[:page]).per(5)
     @albums = Album.all
   end
 

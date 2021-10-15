@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     favorites = Favorite.where(user_id: current_user.id).pluck(:itenerary_id)  # ログイン中のユーザーのお気に入りのitenerary_idカラムを取得
-    @favorite_list = Itenerary.find(favorites)
-    @favorite_list = Kaminari.paginate_array(@favorite_list).page(params[:page]).per(3)
+    favorite_list = Itenerary.find(favorites)
+    @favorite_list = Kaminari.paginate_array(favorite_list).page(params[:page]).per(3)
   end
 
   def edit

@@ -1,23 +1,28 @@
-<div class="nested-fields">
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>タイトル</td>
-        <td><%= f.text_field :schedules_title %></td>
-      </tr>
-      <tr>
-        <td>日程</td>
-        <td><%= f.date_field :schedules_date %></td>
-      </tr>
-      <tr>
-        <td>時間</td>
-        <td><%= f.time_field :schedules_time %></td>
-      </tr>
-      <tr>
-        <td>コメント</td>
-        <td><%= f.text_area :schedules_comment %></td>
-        <td><%= link_to_remove_association "削除", f %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="nested-fields schedule-card">
+  <p>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>title</td>
+          <td><%= f.text_field :schedules_title, class: "form" %></td>
+        </tr>
+        <tr>
+          <td>date</td>
+          <td><%= f.date_field :schedules_date, class: "form"  %></td>
+        </tr>
+        <tr>
+          <td>time</td>
+          <td><%= f.time_field :schedules_time, class: "form"  %></td>
+        </tr>
+        <tr>
+          <td>comment</td>
+          <td><%= f.text_area :schedules_comment, class: "form"  %></td>
+        </tr>
+        <tr class="text-right">
+          <td></td>
+          <td><%= link_to_remove_association "", f, class: "far fa-trash-alt fa-lg"%></td>
+        </tr>
+      </tbody>
+    </table>
+  </p>
 </div>

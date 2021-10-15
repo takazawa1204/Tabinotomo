@@ -1,56 +1,52 @@
-<div class='top-bg-center'>
-  <div class="container pb-5">
-    <div class='top-bg-introduction mx-auto'>
-      <div class='mx-auto px-3 py-4'>
-        <%= form_with model: @itenerary, local:true do |f| %>
-          <div class="float-right">
-            <a href="/">
-                <img class="itenerary-title-top pull-right" src=<%= asset_path('titleframe2.jpg') %> width="120" height="120">
-            </a>
-          </div>
-          <div class="pt-3 p-md-5 mb-4 offset-md-5 mx-auto itenerary-title">
-            <%= f.text_field :title, :placeholder => "しおりタイトルを入力" %>
-          </div>
-          <div class='d-flex pt-3'>
-            <h2 style='color:#000; font-size: 40px;'>持ち物リスト</h2>
-        　</div>
-          <hr class='divider'>
-          <div>
-            <%= f.fields_for :belongings do |belongings| %>
-              <%= render "belonging_fields", f: belongings %>
-            <% end %>
-          </div>
-          <div class="text-center mt-5">
-            <%= link_to_add_association '追加', f, :belongings, class:"btn-lg btn-pink" %>
-          </div>
-          <div class='d-flex pt-3'>
-            <h2 style='color:#000; font-size: 40px;'>スケジュール</h2>
-        　</div>
-          <hr class='divider'>
-          <div>
-            <%= f.fields_for :schedules do |schedules| %>
-              <%= render "schedule_fields", f: schedules %>
-            <% end %>
-          </div>
-          <div class="text-center mt-5">
-            <%= link_to_add_association '追加', f, :schedules, class:"btn-lg btn-pink" %>
-          </div>
-          <div class='d-flex pt-3'>
-            <h2 style='color:#000; font-size: 40px;'>タグ</h2>
-        　</div>
-          <hr class='divider'>
-          <div>
-            <%= f.text_field :tag_name, value: @tag_list %><br>
-            <p>※,(半角コンマ)を入力することで複数のタグをつけることができます。<br>例：夏,海,旅行</p>
-          </div>
-          <div class='d-flex pt-3'>
-            <h2 style='color:#000; font-size: 40px;'>編集用パスワード</h2>
-        　</div>
-          <hr class='divider'>
-          <%= f.password_field :edit_password %>
-          <%= f.submit 'しおりの登録' %>
-        <% end %>
-      </div>
+<div class="container itenerary pb-5">
+  <div class="row">
+    <div class="col-md-5">
+      <h1>Create Itenerary</h1>
     </div>
   </div>
+  <hr class='divider'>
+  <%= form_with model: @itenerary, local:true do |f| %>
+    <h2 class="pt-5">Title</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <p><%= f.text_field :title, :placeholder => "title", class: "form" %></p>
+      </div>
+    </div>
+    <h2 class="pt-5">Packing List</h2>
+    <div class="row">
+      <div class="col-md-5">
+        <div>
+          <%= f.fields_for :belongings do |belongings| %>
+            <%= render "belonging_fields", f: belongings %>
+          <% end %>
+        </div>
+        <div class="mt-2">
+          <%= link_to_add_association 'add', f, :belongings, class:"btn btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+    <h2 class="pt-5">Schedule</h2>
+    <div class="row">
+      <%= f.fields_for :schedules do |schedules| %>
+        <%= render "schedule_fields", f: schedules %>
+      <% end %>
+      <div class="text-center mt-5 d-flex align-items-end">
+        <%= link_to_add_association 'add', f, :schedules, class:"btn btn-outline-dark mx-5 my-5" %>
+      </div>
+    </div>
+    <h2  class="pt-5">Tag</h2>
+    <div class="row">
+      <div>
+        <%= f.text_field :tag_name, value: @tag_list, class: "form"  %><br>
+        <p>※,(半角コンマ)を入力することで複数のタグをつけることができます。<br>例：夏,海,旅行</p>
+      </div>
+    </div>
+    <h2  class="pt-5">edit Password</h2>
+    <div class="row">
+      <%= f.password_field :edit_password, class: "form"  %>
+    </div>
+    <div class="row">
+      <%= f.submit 'Done', class:"btn-lg btn-outline-dark mx-5 my-5" %>
+    </div>
+  <% end %>
 </div>

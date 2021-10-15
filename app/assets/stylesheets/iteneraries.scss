@@ -2,90 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.itenerary-title {
-  background-image : image_url('titleframe.jpg');
-  background-color:rgba(216,150,98,0.2);
-  background-blend-mode:lighten;
-  opacity: 0.8;
-  background-size: cover;
-  object-fit: cover;
-  text-align: center;
-  font-size: 40px;
+.itenerary {
+  font-family: 'Kaushan Script', cursive;
 }
 
-.itenerary-title-top {
-  background-image : image_url('titleframe2.jpg');
-  background-blend-mode:lighten;
-  background-size: cover;
-  object-fit: cover;
-  text-align: center;
+.form {
+  border-bottom:1px solid #cccccc;
+  border-right:none;
+  border-left:none;
+  border-top:none;
+  border-radius:0px;
 }
 
-ol.sample1{
-  counter-reset:list;
-  list-style-type:none;
-  position:relative;
-  font: 14px/1.6 'Mv Boli', 'arial narrow', sans-serif;
-  padding: 1.2em;
-  background:#F2EFE7;
-  -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.2) inset,0 0 4px rgba(0, 0, 0, 0.2) ;
-  -moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.2) inset,0 0 4px rgba(0, 0, 0, 0.2) ;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2) inset,0 0 4px rgba(0, 0, 0, 0.2) ;
-  width:250px;
-}
-ol.sample1:after{
-  content:"忘れもの注意"; /* 右下の文字 */
-  position: absolute;
-  bottom: 8px;
-  right: 1.2em;
-  font-size:12px;
-  color:#bbb;
-}
-ol.sample1 li{
-  position:relative;
-  padding: 7px 5px 7px 50px;
-  margin: 7px 0 10px 0px;
-  font-weight: bold;
-  font-size:14px;
-  border-bottom:dashed 1px #ccc;
-  color:#333;
-}
-ol.sample1 li:first-child{
-  margin-top:0;
-}
-ol.sample1 li:last-child{
-  margin-bottom:20px;
-}
-ol.sample1 li:before{
-  counter-increment: list;
-  content: counter(list) ",";
-  position: absolute;
-  left: 15px;
-  font-size:1.2em;
-   top: 50%;
-  -moz-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-//スケジュール日付
-.oneday {
-  background: #dfefff;
-  box-shadow: 0px 0px 0px 5px #dfefff;
-  border: dashed 2px white;
-  padding: 0.2em 0.5em;
-}
-
-.main-schedule{
+.schedule-card {
     margin:2em 0;
     position: relative;
     padding: 0.5em 1.5em;
     border-top: solid 2px black;
     border-bottom: solid 2px black;
 }
-.main-schedule:before, .main-schedue:after{
+.schedule-card:before, .schedule-card:after{
     content: '';
     position: absolute;
     top: -10px;
@@ -94,10 +30,35 @@ ol.sample1 li:before{
     height: calc(100% + 20px);
     background-color: black;
 }
-.main-schedule:before {left: 10px;}
-.main-schedule:after {right: 10px;}
-.main-schedule p {
+.schedule-card:before {left: 10px;}
+.schedule-card:after {right: 10px;}
+.schedule-card p {
     margin: 0; 
     padding: 0;
 }
+
+.itenerary-title {
+  font-size: 120px;
+  position: relative;
+}
+
+.itenerary-title:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  background: -webkit-repeating-linear-gradient(-45deg, #17a2b8, #17a2b8 2px, #fff 2px, #fff 4px);
+  background: repeating-linear-gradient(-45deg, #17a2b8, #17a2b8 2px, #fff 2px, #fff 4px);
+}
+
+//スケジュール日付
+.oneday {
+  padding: 0.5em;/*文字周りの余白*/
+  color: #494949;/*文字色*/
+  background: #D6F0F4;/*背景色*/
+  border-left: solid 5px #17a2b8;/*左線（実線 太さ 色）*/
+}
+
 
