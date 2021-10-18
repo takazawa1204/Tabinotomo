@@ -8,11 +8,24 @@ class ItenerariesController < ApplicationController
 
   def create
     @itenerary = Itenerary.new(itenerary_params)
-    @itenerary.save
-    redirect_to itenerary_path(@itenerary)
-    tag_list = params[:itenerary][:tag_name].split(",")
     if @itenerary.save
-      @itenerary.save_iteneraries(tag_list)
+      #belogings
+      params[:itenerary][:belongings_attributes].values.each do |v|
+        @itenerary.belongings.create({belongings_name: v[:belongings_name]})
+      end
+
+      #Schedule
+      params[:itenerary][:schedules_attributes].values.each do |v|
+        @itenerary.schedules.create({schedules_date: v[:schedules_date], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+      end
+
+      redirect_to itenerary_path(@itenerary)
+      tag_list = params[:itenerary][:tag_name].split(",")
+      if @itenerary.save
+        @itenerary.save_iteneraries(tag_list)
+      end
+    else
+      render "new"
     end
   end
 
@@ -40,27 +53,51 @@ class ItenerariesController < ApplicationController
 
   def update
     @itenerary = Itenerary.find(params[:id])
-    @itenerary.update(password_params)
-    if @itenerary.edit_password == @itenerary.confirmation_password
+    if @itenerary.edit_password == params[:itenerary][:confirmation_password]
       @itenerary.update(itenerary_params)
-      redirect_to itenerary_path(@itenerary)
+      #belogings
+      params[:itenerary][:belongings_attributes].values.each do |v|
+        if v.include?(:id) #編集(idあり)
+          Belonging.find(v[:id]).update({belongings_name: v[:belongings_name]})
+        else
+          #新規作成(idなし)
+          @itenerary.belongings.create({belongings_name: v[:belongings_name]})
+        end
+      end
+
+      #Schedule
+      params[:itenerary][:schedules_attributes].values.each do |v|
+        if v.include?(:id) #編集(idあり)
+          Schedule.find(v[:id]).update({schedules_date: v[:schedules_date], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+        else
+          #新規作成(idなし)
+          @itenerary.schedules.create({schedules_date: v[:schedules_date], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+        end
+      end
+
+      #Album
+      params[:itenerary][:albums_attributes].values.each do |v|
+        if v.include?(:id) #編集(idあり)
+          Album.find(v[:id]).update({image: v[:image], albums_comment: v[:albums_comment]})
+        else
+          #新規作成(idなし)
+          @itenerary.albums.create({image: v[:image], albums_comment: v[:albums_comment]})
+        end
+      end
+
+      tag_list = params[:itenerary][:tag_name].split(",")
+      if @itenerary.update(itenerary_params)
+        @itenerary.save_iteneraries(tag_list)
+        redirect_to itenerary_path(@itenerary)
+      end
     else
       redirect_to edit_itenerary_path(@itenerary)
-    end
-
-    tag_list = params[:itenerary][:tag_name].split(",")
-    if @itenerary.update(itenerary_params)
-      @itenerary.save_iteneraries(tag_list)
     end
   end
 
   private
 
   def itenerary_params
-    params.require(:itenerary).permit(:title, :edit_password, :confirmation_password, belongings_attributes: [:id, :belongings_name, :_destroy], schedules_attributes: [:id, :schedules_date, :schedules_time, :schedules_title, :schedules_comment, :_destroy], albums_attributes: [:id, :image, :albums_comment, :albums_map, :_destroy])
-  end
-
-  def password_params
-    params.require(:itenerary).permit(:confirmation_password)
+    params.require(:itenerary).permit(:title, :edit_password, :tag_name, :confirmation_password)
   end
 end

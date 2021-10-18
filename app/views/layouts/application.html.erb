@@ -21,15 +21,15 @@
             <ul class="navbar-nav ml-auto">
 
               <% if user_signed_in? %>
-                <li><%= link_to 'たびのともについて', about_path, class:'nav-link text-body mr-1' %></li>
-                <li><%= link_to '新規しおりの作成', new_itenerary_path, class:'nav-link text-body mr-1' %></li>
-                <li><%= link_to 'マイページ', users_my_page_path, class:'nav-link text-body mr-1' %></li>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'nav-link text-body' %></li>
+                <li><%= link_to 'About', about_path, class:'nav-link text-body mr-1' %></li>
+                <li><%= link_to 'Create Itenerary', new_itenerary_path, class:'nav-link text-body mr-1' %></li>
+                <li><%= link_to 'Mypage', users_my_page_path, class:'nav-link text-body mr-1' %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class:'nav-link text-body' %></li>
               <% else %>
-                <li><%= link_to 'たびのともについて', about_path, class:'nav-link text-body mr-1' %></li>
-                <li><%= link_to '新規しおりの作成', new_itenerary_path, class:'nav-link text-body mr-1' %></li>
-                <li><%= link_to '新規会員登録', new_user_registration_path, class:'nav-link text-body mr-1' %></li>
-                <li><%= link_to 'ログイン', new_user_session_path, class:'nav-link text-body' %></li>
+                <li><%= link_to 'about', about_path, class:'nav-link text-body mr-1' %></li>
+                <li><%= link_to 'Create Itenerary', new_itenerary_path, class:'nav-link text-body mr-1' %></li>
+                <li><%= link_to 'Sign up', new_user_registration_path, class:'nav-link text-body mr-1' %></li>
+                <li><%= link_to 'Log in', new_user_session_path, class:'nav-link text-body' %></li>
               <% end %>
             </ul>
           </div>

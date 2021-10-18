@@ -1,16 +1,7 @@
 <table>
-    <thead>
-        <tr>
-            <th>タイトル</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody id="itenerary">
     <% iteneraries.each do |itenerary| %>
       <tr>
-        <td><%= itenerary.title %></td>
-        <td><%= link_to "詳細", itenerary_path(itenerary) %></td>
+        <td><%= link_to itenerary.title, itenerary_path(itenerary) %></td>
       </tr>
     <% end %>
-    </tbody>
 </table>

@@ -1,7 +1,8 @@
 class SearchsController < ApplicationController
   def search
     @content = params["content"]
-    @recourds = search_for(@content)
+    recourds = search_for(@content)
+    @recourds = Kaminari.paginate_array(recourds).page(params[:page]).per(5)
   end
   
   private

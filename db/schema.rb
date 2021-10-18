@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_004931) do
+ActiveRecord::Schema.define(version: 2021_10_18_044844) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "itenerary_id"
-    t.integer "image_id"
+    t.string "image_id"
     t.text "albums_comment"
     t.string "albums_map"
     t.datetime "created_at", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_004931) do
     t.string "confirmation_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tag_name"
   end
 
   create_table "schedules", force: :cascade do |t|
