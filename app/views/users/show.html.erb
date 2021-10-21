@@ -5,6 +5,7 @@
     </div>
   </div>
   <hr class='divider'>
+  <h3 class="mt-3">Profile</h3>
   <div class="row">
     <div class="col-md-3">
       <p>name:<%= @user.name %></p>
@@ -15,7 +16,7 @@
       <p>mail:<%= @user.email %></p>
     </div>
     <div class="col-md-1">
-      <%= link_to '', edit_user_path(@user), class:"far fa-edit fa-2x" %>
+      <%= link_to '', edit_user_path(@user), class:"far fa-edit" %>
     </div>
   </div>
   <h3 class="mt-3">Favorite</h3>
@@ -27,10 +28,11 @@
               <div class="favorite-parent">
                 <span class="favorite-mask">
                   <a href="/iteneraries/itenerary_path(itenerary)">
-                    <img class="round" src=<%= asset_path('book.png') %> width="150" height="120">
+                    <% @albums.each do |albums| %>
+                      <%= attachment_image_tag albums, :image, :fill, 150, 120, fallback: "book.png", size: '150x102', class: "round"  %>
+                    <% end %>
                   </a>
                   <span class="favorite-text">
-                    <p class="favorite-title">title</p>
                     <%= itenerary.title %>
                   </span>
                 </span>

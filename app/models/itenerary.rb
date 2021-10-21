@@ -11,7 +11,7 @@ class Itenerary < ApplicationRecord
   
   has_many :favorites, dependent: :destroy
   
-  validates :edit_password, presence: true
+  validates :edit_password, presence: true, length: { minimum: 6 }
   validates :title, presence: true
   
   def favorited_by?(user)

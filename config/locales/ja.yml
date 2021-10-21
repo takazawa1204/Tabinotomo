@@ -2,3 +2,11 @@ ja:
   time:
     formats:
       default: "%H:%M"
+
+  activerecord:
+    models:
+      itenerary: しおり
+    attributes:
+      itenerary:
+        title: タイトル
+        edit_password: 編集用パスワード
