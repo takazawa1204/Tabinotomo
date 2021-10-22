@@ -7,7 +7,7 @@ class ItenerariesController < ApplicationController
   end
 
   def create
-    @itenerary = Itenerary.new(itenerary_params)
+    @itenerary ||= Itenerary.new(itenerary_params)
     if @itenerary.save
       #belogings
       params[:itenerary][:belongings_attributes].values.each do |v|
@@ -16,7 +16,7 @@ class ItenerariesController < ApplicationController
 
       #Schedule
       params[:itenerary][:schedules_attributes].values.each do |v|
-        @itenerary.schedules.create({schedules_date: v[:schedules_date], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+        @itenerary.schedules.create({schedules_date: v[:schedules_time], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
       end
 
       redirect_to itenerary_path(@itenerary)
@@ -39,6 +39,7 @@ class ItenerariesController < ApplicationController
   def show
     @itenerary = Itenerary.find(params[:id])
     @belongings = Belonging.where(itenerary_id: params[:id])
+    
     @schedules = Schedule.where(itenerary_id: params[:id]).order(:schedules_date).order(:schedules_time).group_by{|schedule| schedule.schedules_date}
     @albums = Album.where(itenerary_id: params[:id])
   end
@@ -68,20 +69,21 @@ class ItenerariesController < ApplicationController
       #Schedule
       params[:itenerary][:schedules_attributes].values.each do |v|
         if v.include?(:id) #編集(idあり)
-          Schedule.find(v[:id]).update({schedules_date: v[:schedules_date], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+          Schedule.find(v[:id]).update({schedules_date: v[:schedules_time], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
         else
           #新規作成(idなし)
-          @itenerary.schedules.create({schedules_date: v[:schedules_date], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+          @itenerary.schedules.create({schedules_date: v[:schedules_time], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
         end
       end
 
       #Album
-      params[:itenerary][:albums_attributes].values.each do |v|
-        if v.include?(:id) #編集(idあり)
-          Album.find(v[:id]).update({image: v[:image], albums_comment: v[:albums_comment]})
-        else
-          #新規作成(idなし)
-          @itenerary.albums.create({image: v[:image], albums_comment: v[:albums_comment]})
+      unless params[:itenerary][:albums_attributes].nil?
+        params[:itenerary][:albums_attributes].values.each do |v|
+          if v.include?(:id) #編集(idあり)
+            Album.find(v[:id]).update({image: v[:image], albums_comment: v[:albums_comment]})
+          else #新規作成(idなし)
+            @itenerary.albums.create({image: v[:image], albums_comment: v[:albums_comment]})
+          end
         end
       end
 

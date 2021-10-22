@@ -14,24 +14,14 @@
           <tbody>
             <td><%= link_to itenerary.title, itenerary_path(itenerary) %></td>
             <td id="favorite_buttons_<%= itenerary.id %>">
-              <%= render "favorites/favorite", itenerary: itenerary %>
+              <% if user_signed_in? %>
+                <%= render "favorites/favorite", itenerary: itenerary %>
+              <% end %>
             </td>
           </tbody>
         <% end %>
         </table>
         <div class="d-flex justify-content-center py-2"><%= paginate @iteneraries %></div>
-      </div>
-      <h2 class="pt-5">Recommendation</h2>
-      <div class="row">
-        <div class="col-md-5">
-          <div>
-            <% @albums.first(3).each do |album| %>
-              <div>
-                <%= attachment_image_tag album, :image, format: 'jpeg', size: "100x100", clss:"round" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
       </div>
     </div>
     <div class="col-3 pt-5">

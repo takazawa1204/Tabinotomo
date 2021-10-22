@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
     @itenerary = Itenerary.find(params[:itenerary_id])
     favorite = current_user.favorites.new(itenerary_id: @itenerary.id)
     favorite.save
-    # redirect_to iteneraries_path
   end
 
 
@@ -13,7 +12,6 @@ class FavoritesController < ApplicationController
     @itenerary = Itenerary.find(params[:itenerary_id])
     favorite = current_user.favorites.find_by(itenerary_id: @itenerary.id)
     favorite.destroy
-    # redirect_to iteneraries_path
   end
 
 

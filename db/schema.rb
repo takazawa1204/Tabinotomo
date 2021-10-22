@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_044844) do
+ActiveRecord::Schema.define(version: 2021_10_22_080312) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "itenerary_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_044844) do
   create_table "schedules", force: :cascade do |t|
     t.integer "itenerary_id"
     t.date "schedules_date"
-    t.time "schedules_time"
+    t.datetime "schedules_time"
     t.string "schedules_title"
     t.text "schedules_comment"
     t.datetime "created_at", null: false

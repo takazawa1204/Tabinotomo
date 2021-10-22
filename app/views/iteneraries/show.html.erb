@@ -14,7 +14,9 @@
         <% schedules.each do |schedule| %>
           <div class="schedule-card">
             <i class="far fa-clock"></i>
-            <%= schedule.schedules_time.strftime("%H:%M") %><br>
+            <% unless schedule.schedules_time.nil? %>
+              <%= schedule.schedules_time.strftime("%H:%M") %><br>
+            <% end %>
             <i class="fas fa-map-marker-alt"></i>
             <%= schedule.schedules_title %><br>
             <%= schedule.schedules_comment %>
