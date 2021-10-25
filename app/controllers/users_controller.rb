@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    favorites = Favorite.where(user_id: current_user.id).pluck(:itenerary_id)  # ログイン中のユーザーのお気に入りのitenerary_idカラムを取得
+
+    favorites = Favorite.where(user_id: current_user.id).pluck(:itenerary_id)
     favorite_list = Itenerary.find(favorites)
     @favorite_list = Kaminari.paginate_array(favorite_list).page(params[:page]).per(3)
     @albums = Album.order("RANDOM()").limit(3)
@@ -22,5 +23,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name)
   end
-
 end

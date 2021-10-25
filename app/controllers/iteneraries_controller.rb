@@ -9,14 +9,19 @@ class ItenerariesController < ApplicationController
   def create
     @itenerary ||= Itenerary.new(itenerary_params)
     if @itenerary.save
-      #belogings
+      # belogings
       params[:itenerary][:belongings_attributes].values.each do |v|
-        @itenerary.belongings.create({belongings_name: v[:belongings_name]})
+        @itenerary.belongings.create({ belongings_name: v[:belongings_name] })
       end
 
-      #Schedule
+      # Schedule
       params[:itenerary][:schedules_attributes].values.each do |v|
-        @itenerary.schedules.create({schedules_date: v[:schedules_time], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+        @itenerary.schedules.create({
+          schedules_date: v[:schedules_time],
+          schedules_time: v[:schedules_time],
+          schedules_title: v[:schedules_title],
+          schedules_comment: v[:schedules_comment],
+        })
       end
 
       redirect_to itenerary_path(@itenerary)
@@ -32,15 +37,17 @@ class ItenerariesController < ApplicationController
   def index
     @tag_list = Tag.all
     iteneraries = params[:tag_id].present? ? Tag.find(params[:tag_id]).iteneraries : Itenerary.all
-    @iteneraries =  Kaminari.paginate_array(iteneraries).page(params[:page]).per(5)
+    @iteneraries = Kaminari.paginate_array(iteneraries).page(params[:page]).per(5)
     @albums = Album.all
   end
 
   def show
     @itenerary = Itenerary.find(params[:id])
     @belongings = Belonging.where(itenerary_id: params[:id])
-    
-    @schedules = Schedule.where(itenerary_id: params[:id]).order(:schedules_date).order(:schedules_time).group_by{|schedule| schedule.schedules_date}
+
+    @schedules = Schedule.where(itenerary_id: params[:id]).
+      order(:schedules_date).order(:schedules_time).
+      group_by { |schedule| schedule.schedules_date }
     @albums = Album.where(itenerary_id: params[:id])
   end
 
@@ -56,33 +63,43 @@ class ItenerariesController < ApplicationController
     @itenerary = Itenerary.find(params[:id])
     if @itenerary.edit_password == params[:itenerary][:confirmation_password]
       @itenerary.update(itenerary_params)
-      #belogings
+      # belogings
       params[:itenerary][:belongings_attributes].values.each do |v|
-        if v.include?(:id) #編集(idあり)
-          Belonging.find(v[:id]).update({belongings_name: v[:belongings_name]})
+        if v.include?(:id) # 編集(idあり)
+          Belonging.find(v[:id]).update({ belongings_name: v[:belongings_name] })
         else
-          #新規作成(idなし)
-          @itenerary.belongings.create({belongings_name: v[:belongings_name]})
+          # 新規作成(idなし)
+          @itenerary.belongings.create({ belongings_name: v[:belongings_name] })
         end
       end
 
-      #Schedule
+      # Schedule
       params[:itenerary][:schedules_attributes].values.each do |v|
-        if v.include?(:id) #編集(idあり)
-          Schedule.find(v[:id]).update({schedules_date: v[:schedules_time], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+        if v.include?(:id) # 編集(idあり)
+          Schedule.find(v[:id]).update({
+            schedules_date: v[:schedules_time],
+            schedules_time: v[:schedules_time],
+            schedules_title: v[:schedules_title],
+            schedules_comment: v[:schedules_comment],
+          })
         else
-          #新規作成(idなし)
-          @itenerary.schedules.create({schedules_date: v[:schedules_time], schedules_time: v[:schedules_time], schedules_title: v[:schedules_title], schedules_comment: v[:schedules_comment]})
+          # 新規作成(idなし)
+          @itenerary.schedules.create({
+            schedules_date: v[:schedules_time],
+            schedules_time: v[:schedules_time],
+            schedules_title: v[:schedules_title],
+            schedules_comment: v[:schedules_comment],
+          })
         end
       end
 
-      #Album
+      # Album
       unless params[:itenerary][:albums_attributes].nil?
         params[:itenerary][:albums_attributes].values.each do |v|
-          if v.include?(:id) #編集(idあり)
-            Album.find(v[:id]).update({image: v[:image], albums_comment: v[:albums_comment]})
-          else #新規作成(idなし)
-            @itenerary.albums.create({image: v[:image], albums_comment: v[:albums_comment]})
+          if v.include?(:id) # 編集(idあり)
+            Album.find(v[:id]).update({ image: v[:image], albums_comment: v[:albums_comment] })
+          else # 新規作成(idなし)
+            @itenerary.albums.create({ image: v[:image], albums_comment: v[:albums_comment] })
           end
         end
       end

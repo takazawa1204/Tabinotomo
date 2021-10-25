@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/about' => 'homes#about', as: 'about'
   get '/users/my_page' => 'users#show'
   get '/search', to: 'searchs#search'
-  
+
   resources :users, only: [:show, :edit, :update]
   resources :iteneraries, only: [:new, :create, :index, :show, :edit, :update] do
     resources :belongings, only: [:create, :destroy]
@@ -12,5 +12,4 @@ Rails.application.routes.draw do
     resources :albums, only: [:create, :destroy, :index, :edit, :update]
     resource :favorites, only: [:create, :destroy]
   end
-  
 end
