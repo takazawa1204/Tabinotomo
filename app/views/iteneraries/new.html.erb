@@ -18,11 +18,14 @@
       <div class="col-md-5">
         <div>
           <%= f.fields_for :belongings do |belongings| %>
-            <%= render "belonging_fields", f: belongings %>
+            <%= render "iteneraries/belonging_fields", f: belongings %>
           <% end %>
         </div>
+        <div id="detail-association-insertion-point"></div>
         <div class="links mt-2">
-          <%= link_to_add_association 'add', f, :belongings, class:"btn btn-outline-dark" %>
+          <%= link_to_add_association 'add', f, :belongings, class:"btn btn-outline-dark", data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'after' }%>
         </div>
       </div>
     </div>
