@@ -66,11 +66,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'bootstrap', '~> 4.5'
+gem "cocoon"
 gem 'jquery-rails'
 gem 'kaminari'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem "cocoon"
 gem "rails-i18n"
 gem 'rubocop-airbnb'
 
