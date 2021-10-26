@@ -20,7 +20,7 @@
             <%= render "belonging_fields", f: belongings %>
           <% end %>
         </div>
-        <div class="mt-2">
+        <div class="links mt-2">
           <%= link_to_add_association 'add', f, :belongings, class:"btn btn-outline-dark" %>
         </div>
       </div>
@@ -30,7 +30,7 @@
       <%= f.fields_for :schedules do |schedules| %>
         <%= render "schedule_fields", f: schedules %>
       <% end %>
-      <div class="text-center mt-5 d-flex align-items-end">
+      <div class="links text-center mt-5 d-flex align-items-end">
         <%= link_to_add_association 'add', f, :schedules, class:"btn btn-outline-dark mx-5 my-5" %>
       </div>
     </div>
@@ -39,7 +39,7 @@
       <%= f.fields_for :albums do |albums| %>
         <%= render "album_fields", f: albums %>
       <% end %>
-      <div class="text-center mt-5 d-flex align-items-end">
+      <div class="links text-center mt-5 d-flex align-items-end">
         <%= link_to_add_association 'add', f, :albums, class:"btn btn-outline-dark mx-5 my-5" %>
       </div>
     </div>
