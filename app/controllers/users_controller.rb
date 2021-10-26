@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     favorites = Favorite.where(user_id: current_user.id).pluck(:itenerary_id)
     favorite_list = Itenerary.find(favorites)
     @favorite_list = Kaminari.paginate_array(favorite_list).page(params[:page]).per(3)
-    @albums = Album.order("RANDOM()").limit(3)
+    @albums = Album.limit(3)
   end
 
   def edit
