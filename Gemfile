@@ -73,6 +73,8 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem "rails-i18n"
 gem 'rubocop-airbnb'
+gem 'dotenv-rails'
+
 
 gem 'dotenv-rails'
 group :production do
