@@ -98,38 +98,19 @@ class ItenerariesController < ApplicationController
         params[:itenerary][:albums_attributes].values.each do |v|
           if v.include?(:id) # 編集(idあり)
             Album.find(v[:id]).update({ image: v[:image], albums_comment: v[:albums_comment] })
-            album = Album.find(v[:id])
+            album = Album.find(v[:id]) #編集したalbumを取得
           else # 新規作成(idなし)
-            album = @itenerary.albums.create({ image: v[:image], albums_comment: v[:albums_comment] })
-            # byebug
+            album = @itenerary.albums.create({ image: v[:image], albums_comment: v[:albums_comment] }) #新規作成したalbumを取得
           end
           # -------------------------------------------
-          # album_data = Album.find(album.id)
-          # album = Album.find(@itenerary.id)
-          # byebug
-          tags = Vision.get_image_data(album.image)
-          
-          # binding.irb
-          @itenerary.save_iteneraries(tags)
-          # binding.irb
-          # tags.each do |tag|
-            # binding.irb
-            # unless @itenerary.tags.exists?(tag_name: tag)
-              # @itenerary.tags.create(tag_name: tag)
-              # @itenerary.save_iteneraries(tag)
-            # end
-          # end
+          tags = Vision.get_image_data(album.image) #albumの画像を取得しAPIへ
+          @itenerary.save_iteneraries(tags) #APIで取得したtagを保存
           # -------------------------------------------
         end
       end
-
+      
       redirect_to itenerary_path(@itenerary)
 
-      # tag_list = params[:itenerary][:tag_name].split(",")
-      # if @itenerary.update(itenerary_params)
-      #   @itenerary.save_iteneraries(tag_list)
-      #   redirect_to itenerary_path(@itenerary)
-      # end
     else
       redirect_to edit_itenerary_path(@itenerary)
     end
