@@ -36,6 +36,9 @@
              <p><%=link_to list.tag_name,iteneraries_path(tag_id:list.id)%><%= list.iteneraries.count %></p>
           <% end %>
         </div>
+        <div class="pt-5">
+          <h2><%= link_to "Itenerary List", iteneraries_path %></h2>
+        </div>
       </div>
     </div>
   </div>

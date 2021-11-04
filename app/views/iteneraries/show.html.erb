@@ -77,12 +77,8 @@
       <%= request.url %>
     </div>
   </div>
-  <!------------------------------------>
-  <div>
-    <%= @itenerary.tag_name %>
-  </div>
-  <!------------------------------------>
   <div class="row text-center">
     <%= link_to 'edit', edit_itenerary_path(@itenerary), class:"btn-lg btn-outline-dark mx-auto my-5 container-fluid" %>
   </div>
+  <p class="mt-5"><%= link_to "Itenerary List", iteneraries_path %></p>
 </div>
