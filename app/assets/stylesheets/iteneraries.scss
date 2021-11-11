@@ -108,3 +108,11 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.url {
+  font-size: 10px;
+
+  @media (min-width: 800px) {
+    font-size: 20px;
+  }
+}

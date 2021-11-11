@@ -5,7 +5,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-7 mx-auto">
+    <div class="col-md-3 mx-auto">
+      <div class="container">
+        <div class="pt-5">
+          <h2>Packing List</h2>
+          <% @belongings.each do |belonging| %>
+            <li><%= belonging.belongings_name %></li>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mx-auto">
       <h2 class="pt-5">Schedule</h2>
       <% @schedules.each do |date,schedules| %>
         <div class=" oneday mt-4 mb-4">
@@ -23,16 +33,6 @@
           </div>
         <% end %>
       <% end %>
-    </div>
-    <div class="col-3 mx-auto">
-      <div class="container">
-        <div class="pt-5">
-          <h2>Packing List</h2>
-          <% @belongings.each do |belonging| %>
-            <li><%= belonging.belongings_name %></li>
-          <% end %>
-        </div>
-      </div>
     </div>
   </div>
   <div class="row">
@@ -72,10 +72,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <h2 class="pt-5">Shared URL</h2>
-      <%= request.url %>
-    </div>
+  <h2 class="pt-5">Shared URL</h2>
+  </div>
+  <div class="url">
+    <%= request.url %>
   </div>
   <div class="row text-center">
     <%= link_to 'edit', edit_itenerary_path(@itenerary), class:"btn-lg btn-outline-dark mx-auto my-5 container-fluid" %>

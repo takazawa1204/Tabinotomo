@@ -5,39 +5,41 @@
     </div>
   </div>
   <hr class='divider'>
-  <div class="row">
-    <div class="col-8">
-      <h2 class="pt-5">List</h2>
-      <div class="row">
-        <table class="table table-borderless">
-        <% @iteneraries.each do |itenerary| %>
-          <tbody>
-            <td><%= link_to itenerary.title, itenerary_path(itenerary) %></td>
-            <td id="favorite_buttons_<%= itenerary.id %>">
-              <% if user_signed_in? %>
-                <%= render "favorites/favorite", itenerary: itenerary %>
-              <% end %>
-            </td>
-          </tbody>
-        <% end %>
-        </table>
-        <div class="d-flex justify-content-center py-2"><%= paginate @iteneraries %></div>
-      </div>
-    </div>
-    <div class="col-3 pt-5">
-      <div class="container sidebar">
-        <div class="pt-5">
-          <h2>search</h2>
-          <%= render 'searchs/form' %>
-        </div>
-        <div class="pt-5">
-          <h2>Tag List</h2>
-          <% @tag_list.each do |list| %>
-             <p><%=link_to list.tag_name,iteneraries_path(tag_id:list.id)%><%= list.iteneraries.count %></p>
+  <div class=container>
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="pt-5">List</h2>
+        <div class="row">
+          <table class="table table-borderless">
+          <% @iteneraries.each do |itenerary| %>
+            <tbody>
+              <td><%= link_to itenerary.title, itenerary_path(itenerary) %></td>
+              <td id="favorite_buttons_<%= itenerary.id %>">
+                <% if user_signed_in? %>
+                  <%= render "favorites/favorite", itenerary: itenerary %>
+                <% end %>
+              </td>
+            </tbody>
           <% end %>
+          </table>
+          <div class="d-flex justify-content-center py-2"><%= paginate @iteneraries %></div>
         </div>
-        <div class="pt-5">
-          <h2><%= link_to "Itenerary List", iteneraries_path %></h2>
+      </div>
+      <div class="col-md-4 pt-5">
+        <div class="container sidebar">
+          <div class="pt-5">
+            <h2>search</h2>
+            <%= render 'searchs/form' %>
+          </div>
+          <div class="pt-5">
+            <h2>Tag List</h2>
+            <% @tag_list.each do |list| %>
+               <p><%=link_to list.tag_name,iteneraries_path(tag_id:list.id)%><%= list.iteneraries.count %></p>
+            <% end %>
+          </div>
+          <div class="pt-5">
+            <h2><%= link_to "Itenerary List", iteneraries_path %></h2>
+          </div>
         </div>
       </div>
     </div>
