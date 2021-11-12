@@ -35,7 +35,8 @@ class ItenerariesController < ApplicationController
   end
 
   def index
-    @tag_list = Tag.all
+    tag_list = Tag.all
+    @tag_list = @iteneraries = Kaminari.paginate_array(tag_list).page(params[:page]).per(5)
     iteneraries = params[:tag_id].present? ? Tag.find(params[:tag_id]).iteneraries : Itenerary.all
     @iteneraries = Kaminari.paginate_array(iteneraries).page(params[:page]).per(5)
     @albums = Album.all
@@ -108,7 +109,7 @@ class ItenerariesController < ApplicationController
           # -------------------------------------------
         end
       end
-      
+
       redirect_to itenerary_path(@itenerary)
 
     else
