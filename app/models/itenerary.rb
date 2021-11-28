@@ -22,7 +22,7 @@ class Itenerary < ApplicationRecord
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     # byebug
     old_tags = current_tags
-    new_tags = ( tags + current_tags ).uniq
+    new_tags = (tags + current_tags).uniq
 
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(tag_name: old_name)

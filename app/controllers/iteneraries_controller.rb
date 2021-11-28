@@ -99,13 +99,16 @@ class ItenerariesController < ApplicationController
         params[:itenerary][:albums_attributes].values.each do |v|
           if v.include?(:id) # 編集(idあり)
             Album.find(v[:id]).update({ image: v[:image], albums_comment: v[:albums_comment] })
-            album = Album.find(v[:id]) #編集したalbumを取得
+            album = Album.find(v[:id]) # 編集したalbumを取得
           else # 新規作成(idなし)
-            album = @itenerary.albums.create({ image: v[:image], albums_comment: v[:albums_comment] }) #新規作成したalbumを取得
+            album = @itenerary.albums.create({
+              image: v[:image],
+              albums_comment: v[:albums_comment],
+            }) # 新規作成したalbumを取得
           end
           # -------------------------------------------
-          tags = Vision.get_image_data(album.image) #albumの画像を取得しAPIへ
-          @itenerary.save_iteneraries(tags) #APIで取得したtagを保存
+          tags = Vision.get_image_data(album.image) # albumの画像を取得しAPIへ
+          @itenerary.save_iteneraries(tags) # APIで取得したtagを保存
           # -------------------------------------------
         end
       end

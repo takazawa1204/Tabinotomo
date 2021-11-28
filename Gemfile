@@ -75,8 +75,6 @@ gem "rails-i18n"
 gem 'rubocop-airbnb'
 gem 'dotenv-rails'
 
-
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end

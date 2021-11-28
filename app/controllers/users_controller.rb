@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     # @iteneraries = Itenerary.all
     # @album = Album.find(itenerary).limit(3)
     # -----------------------------------------------------------
-
   end
 
   def edit
