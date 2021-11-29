@@ -6,16 +6,7 @@ class UsersController < ApplicationController
     favorite_list = Itenerary.find(favorites)
     @favorite_list = Kaminari.paginate_array(favorite_list).page(params[:page]).per(3)
     @albums = Album.all.order(created_at: :desc).limit(3)
-    # -----------------------------------------------------------
-    # if favorite_list.exists?
-    @favorite_tags = []
-    favorite_list.each do |list|
-      @favorite_tags = list.tags + @favorite_tags
-      @favorite_tags.uniq!
-    end
-    # @iteneraries = Itenerary.all
-    # @album = Album.find(itenerary).limit(3)
-    # -----------------------------------------------------------
+    @favorite_tags = favorite_list.map{ |list| list.tags }.flatten.uniq
   end
 
   def edit
